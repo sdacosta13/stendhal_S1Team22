@@ -30,6 +30,7 @@ import games.stendhal.server.entity.player.GagManager;
 import games.stendhal.server.entity.player.Jail;
 import games.stendhal.server.entity.slot.BankAccessorManager;
 import games.stendhal.server.maps.athor.ship.AthorFerry;
+import games.stendhal.server.maps.deniran.ship.DeniranFerry;
 import marauroa.server.db.TransactionPool;
 
 
@@ -166,7 +167,14 @@ public class SingletonRepository {
 	public static AthorFerry getAthorFerry() {
 		return AthorFerry.get();
 	}
-
+	
+	/**
+	 * @return the DeniranFerry instance
+	 */
+	public static DeniranFerry getDeniranFerry() {
+		return DeniranFerry.get();
+	}
+	
 	/**
 	 * @return the AchievementNotifier instance
 	 */
@@ -215,7 +223,5 @@ public class SingletonRepository {
 	static void setEntityManager(final EntityManager entityManager) {
 		SingletonRepository.entityManager = entityManager;
 	}
-
-
 
 }
