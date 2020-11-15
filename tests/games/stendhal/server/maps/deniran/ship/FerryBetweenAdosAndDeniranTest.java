@@ -42,4 +42,28 @@ public class FerryBetweenAdosAndDeniranTest {
 		}
 		assertThat(player.getZone(), is(deniranZone));
 	}
+	
+	@Test
+	public void testFerryFromDeniranToAdos() {
+		  DeniranFerry deniranFerry = SingletonRepository.getDeniranFerry();
+		  Class<? extends DeniranFerry> ferryClass = deniranFerry.getClass();
+		  
+		  final Player player1 = PlayerTestHelper.createPlayer("sam");
+		  
+		  String zoneName = "0_ados_city_n";
+		  StendhalRPZone ados = new StendhalRPZone(zoneName);
+		  MockStendlRPWorld.get().addRPZone(ados);
+		  StendhalRPZone deniranZone = new StendhalRPZone("0_deniran_river_s");
+		  
+		  player1.onAdded(deniranZone);
+		  
+		  try {
+		   Field current = ferryClass.getDeclaredField("current");
+		   current.setAccessible(true);
+		   current.set(deniranFerry, DeniranFerry.Status.ANCHORED_AT_MAINLAND);
+		  } catch (Exception e) {
+		   e.printStackTrace();
+		  }
+		  assertThat(player1.getZone(), is(ados));
+		 }
 }
