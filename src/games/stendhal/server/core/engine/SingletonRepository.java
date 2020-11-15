@@ -168,12 +168,6 @@ public class SingletonRepository {
 		return AthorFerry.get();
 	}
 	
-	/**
-	 * @return the DeniranFerry instance
-	 */
-	public static DeniranFerry getDeniranFerry() {
-		return DeniranFerry.get();
-	}
 	
 	/**
 	 * @return the AchievementNotifier instance
@@ -222,6 +216,11 @@ public class SingletonRepository {
 	 */
 	static void setEntityManager(final EntityManager entityManager) {
 		SingletonRepository.entityManager = entityManager;
+	}
+
+	public static DeniranFerry getDeniranFerry() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

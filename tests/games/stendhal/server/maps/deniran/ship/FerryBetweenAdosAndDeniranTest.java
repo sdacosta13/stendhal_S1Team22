@@ -24,6 +24,7 @@ public class FerryBetweenAdosAndDeniranTest {
 	@Test
 	public void testFerryFromAdosToDeniran() {
 		DeniranFerry deniranFerry = SingletonRepository.getDeniranFerry();
+		Class<? extends DeniranFerry> ferryClass = deniranFerry.getClass();
 		
 		final Player player = PlayerTestHelper.createPlayer("bob");
 		
@@ -33,14 +34,12 @@ public class FerryBetweenAdosAndDeniranTest {
 		player.onAdded(ferryZone);
 		
 		try {
-			Class<DeniranFerry> ferry = DeniranFerry.class;
-			Field current = ferry.getDeclaredField("current");
+			Field current = ferryClass.getDeclaredField("current");
 			current.setAccessible(true);
 			current.set(deniranFerry, DeniranFerry.Status.ANCHORED_AT_DENIRAN);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(player.getZone());
 		assertThat(player.getZone(), is(deniranZone));
 	}
 }
