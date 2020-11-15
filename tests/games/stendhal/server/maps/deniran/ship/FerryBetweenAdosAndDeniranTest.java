@@ -56,8 +56,8 @@ public class FerryBetweenAdosAndDeniranTest {
 		  StendhalRPZone deniranZone = new StendhalRPZone("0_deniran_river_s");
 		  
 		  player1.onAdded(deniranZone);
-		  
-		  try {
+		 
+		  try { 
 		   Field current = ferryClass.getDeclaredField("current");
 		   current.setAccessible(true);
 		   current.set(deniranFerry, DeniranFerry.Status.ANCHORED_AT_MAINLAND);
