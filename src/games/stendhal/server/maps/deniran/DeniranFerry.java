@@ -1,10 +1,13 @@
 package games.stendhal.server.maps.deniran;
 
+import java.util.List;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.player.Player;
+
 
 
 
@@ -121,7 +124,23 @@ public final class DeniranFerry implements TurnListener{
 			// next state trigger
 			current = current.next();
 			SingletonRepository.getTurnNotifier().notifyInSeconds(current.duration(), this);
+			if(current == Status.ANCHORED_AT_DENIRAN) {
+				StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("0_deniran_river_s");
+				List<Player> players = zone.getPlayers();
+				for(int i =0;i<players.size();i++) {
+					players.get(i).teleport("0_deniran_river_s",100,100,Direction.LEFT,null);
+				}
+				//player.teleport("0_deniran_river_s",100,100,Direction.LEFT,null);
+			}
+			else if(current == Status.ANCHORED_AT_ADOS) {
+				StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("0_ados_coast_s_w2");
+				List<Player> players = zone.getPlayers();
+				for(int i =0;i<players.size();i++) {
+					players.get(i).teleport("0_deniran_river_s",100,100,Direction.LEFT,null);
+				}
+			}	
+			
 		}
-		
 	
 }
+
