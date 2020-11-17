@@ -69,19 +69,25 @@ public class StorageNPCTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "storage");
 		assertTrue(npc.isTalking());
 		assertEquals(
-		            "You can store whatever you like in your storage unit, but don't forget to pay your rent in advance! A small unit can hold three chests and costs 200 money per week, while a large unit can hold six chests and costs 300 money per week.",
+		            "You can store whatever you like in your storage unit, but don't forget to pay your #rent in advance!",
 		            getReply(npc));
 		en.step(player, "rent");
 		assertTrue(npc.isTalking());
 		assertEquals(
-		            "You must always pay your rent in advance, or your unit will be emptied and your items left out for the public.",
-		            getReply(npc));
+		            "If rent isn't paid in advance, your unit will be emptied and your items left out for the public."
+		            + " A #small unit can hold three chests and costs 200 money per week,"
+				    + " while a #large unit can hold six chests and costs 300 money per week.",		            getReply(npc));
 		en.step(player, "small");
 		assertTrue(npc.isTalking());
 		assertEquals(
-		            "You'd like a small storage unit? That costs 200 money per week. How many weeks would you like to pay for?",
+		            "You'd like a small storage unit? That costs 200 money per week. Would you like to rent one?",
 		            getReply(npc));
-		en.step(player, "4");
+		en.step(player, "large");
+		assertTrue(npc.isTalking());
+		assertEquals(
+		            "You'd like a large storage unit? That costs 300 money per week. Would you like to rent one?",
+		            getReply(npc));
+		en.step(player, "yes");
 		assertTrue(npc.isTalking());
 		assertEquals(
 		            "That will be 800 money. Are you sure you want to rent?",
