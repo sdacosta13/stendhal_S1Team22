@@ -7,7 +7,7 @@ import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
 import org.junit.After;
-import org.junit.AfterClass;
+//import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -42,11 +42,11 @@ public class StorageRentingTest extends ZonePlayerAndNPCTestImpl {
 		setupZone(ZONE_NAME);
 		
 	}
-	
-	@AfterClass
+	// Think this is class isn't needed
+	/**@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 	// DO I NEED THIS?
-	}
+	}*/
 	
 	@Before
 	@Override
