@@ -36,7 +36,9 @@ public class StorageNPC implements ZoneConfigurator {
 		
 		@Override
 		public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {			
+			// Reduces money so player has actually paid
 			player.drop("money", COST);
+			
 			// Creates a storage unit
 			final StendhalRPZone storagezone = (StendhalRPZone) SingletonRepository
 					.getRPWorld().getRPZone("int_storage_unit");
@@ -95,7 +97,7 @@ public class StorageNPC implements ZoneConfigurator {
 		npc.setPosition(14, 8);
 		npc.setEntityClass("welcomernpc");
 		npc.setDescription("You see Serena. She looks like a savvy business woman.");
-		npc.setDirection(Direction.LEFT);
+		npc.setDirection(Direction.DOWN);
 		zone.add(npc);
 	}
 
