@@ -8,7 +8,7 @@
 
 	<!-- Ground level -->
 	
-	<zone name="0_deniran_ferrt_n" level="0" x="500768" y="500384" file="Level 0/athor/ship_w2.tmx">
+	<zone name="0_deniran_ship_w2" level="0" x="500768" y="500384" file="Level 0/athor/ship_w2.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
       <parameter name="weather">varying(rain=-1,fog=+1,temperature=+2)</parameter>
