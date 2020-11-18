@@ -21,27 +21,20 @@ import games.stendhal.server.entity.npc.ChatAction;
 
 public class StorageNPC implements ZoneConfigurator {
 
-	private static final class StorageChatAction implements ChatAction {
-		
-		@Override
-		public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-			final StendhalRPZone storagezone = (StendhalRPZone) SingletonRepository
-					.getRPWorld().getRPZone("int_storage");
-			String zoneName = player.getName() + "_storage";
-			// Below line errors- probably because StorageUnit code stub doesn't take these args.
-			final StendhalRPZone zone = new StorageUnit(zoneName, storagezone, player);
-
-			SingletonRepository.getRPWorld().addRPZone(zone);
-			player.teleport(zone, 4, 5, Direction.UP, player);
-			((SpeakerNPC) npc.getEntity()).setDirection(Direction.DOWN);
-		}
-	}
-	
 	@Override
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+		buildNPC(zone);
+	}
+
+	private void buildNPC(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Serena") {
-			
 			@Override
+		    protected void createPath() {
+		        // NPC does not move
+		        setPath(null);
+		    }
+		    
+		    @Override
 			public void createDialog() {
 				addGreeting("Hey there.");
 				addReply("storage", "You can store whatever you like in your storage unit, as long as you pay your rent in #advance!");
@@ -60,17 +53,37 @@ public class StorageNPC implements ZoneConfigurator {
 
 				// remaining behaviour defined in games.stendhal.server.maps.quests.StorageRenting
 			}
-			
+		
 			@Override
 			protected void onGoodbye(RPEntity player) {
-				setDirection(Direction.DOWN);
+				setDirection(Direction.LEFT);
 			}
+		
 		};
-		npc.setPosition(9, 23);
-		npc.setDirection(Direction.DOWN);
-		npc.setDescription("You see Serena. She looks like a trustworthy, hardworking person.");
+		
 		npc.setHP(95);
-		npc.setEntityClass("youngnpc");
+		
+		npc.setPosition(35, 14);
+		npc.setEntityClass("welcomernpc");
+		npc.setDescription("You see Serena. She looks like a trustworthy, hardworking person.");
+
+		npc.setDirection(Direction.LEFT);
 		zone.add(npc);
 	}
+	private static final class StorageChatAction implements ChatAction {
+		
+		@Override
+		public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+			final StendhalRPZone storagezone = (StendhalRPZone) SingletonRepository
+					.getRPWorld().getRPZone("int_storage");
+			String zoneName = player.getName() + "_storage";
+			// Below line errors- probably because StorageUnit code stub doesn't take these args.
+			final StendhalRPZone zone = new StorageUnit(zoneName, storagezone, player);
+
+			SingletonRepository.getRPWorld().addRPZone(zone);
+			player.teleport(zone, 4, 5, Direction.UP, player);
+			((SpeakerNPC) npc.getEntity()).setDirection(Direction.DOWN);
+		}
+	}
 }
+
