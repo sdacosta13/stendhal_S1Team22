@@ -5,7 +5,10 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.item.Corpse;
 import marauroa.common.game.RPObject;
-
+/**
+ * Removes a storage unit
+ * Makes sure no corpses left inside
+ */
 public class StorageUnitRemover implements TurnListener {
 	private StendhalRPZone zone;
 	

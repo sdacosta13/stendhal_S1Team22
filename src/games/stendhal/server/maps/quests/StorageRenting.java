@@ -21,7 +21,11 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
-
+/**
+ * This function allows a player to rent a storage unit from StorageNPC 'Serena'
+ * Currently, a single payment allows the player unlimited access to the vault via Serena
+ * In a future release, we need to make these payments recurring- like real rent rather than buying.
+ */
 
 public class StorageRenting extends AbstractQuest{
 	
@@ -30,6 +34,7 @@ public class StorageRenting extends AbstractQuest{
 	// Cost to rent storage unit for one month
 	private static final int COST = 800;
 	
+	// Records 'history' of this quest for the player
 	@Override
 	public List<String> getHistory(final Player player) {
 		final List<String> res = new ArrayList<String>();
@@ -50,6 +55,9 @@ public class StorageRenting extends AbstractQuest{
 		return res;
 	}
 
+	/**
+	 * This defines the behaviour of requesting/accepting/rejecting the quest
+	 */
 	private void prepareRequestingStep() {
 		final SpeakerNPC npc = npcs.get("Serena");
 		//Player asks about quest/task
@@ -87,10 +95,13 @@ public class StorageRenting extends AbstractQuest{
 			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 	}
 
+	/**
+	 * Defines all behaviours that occur after the quest has been accepted
+	 */
 	private void prepareBringingStep() {
 		final SpeakerNPC npc = npcs.get("Serena");
 
-		// player returns while quest is still active
+		// player returns while quest is still active, and player DOES have 800 money
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 				new QuestInStateCondition(QUEST_SLOT, "start"),
@@ -99,7 +110,8 @@ public class StorageRenting extends AbstractQuest{
 			ConversationStates.QUEST_ITEM_BROUGHT,
 			"I see that you have 800 money! Do you want to rent one of my storage units?",
 			null);
-		
+
+		// player returns while quest is still active, and player does NOT ave 800 money		
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 					new QuestInStateCondition(QUEST_SLOT, "start"),
@@ -108,19 +120,20 @@ public class StorageRenting extends AbstractQuest{
 				ConversationStates.ATTENDING,
 				"If you want to use a storage unit, you'll need to bring me 800 money.",
 				null);
-
+		
+		// player returns while quest is still active, and gives Serena 800 money
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 
 		npc.add(
 				ConversationStates.QUEST_ITEM_BROUGHT,
 				ConversationPhrases.YES_MESSAGES,
-				// make sure the player isn't cheating by putting the armor
-				// away and then saying "yes"
+				// make sure the player isn't cheating by putting the money away and then saying "yes"
 				new PlayerHasItemWithHimCondition("money", COST),
 				ConversationStates.ATTENDING, "Oh great! When you need to use your #storage unit, let me know.",
 				new MultipleActions(reward));
-		
+
+		// player returns while quest is still active, and player DOES have 800 money, but doesn't want to give it to Serena
 		npc.add(
 				ConversationStates.QUEST_ITEM_BROUGHT,
 				ConversationPhrases.NO_MESSAGES,
@@ -131,6 +144,7 @@ public class StorageRenting extends AbstractQuest{
 		
 	}
 
+	// Adds quest to the world
 	@Override
 	public void addToWorld() {
 		fillQuestInfo(

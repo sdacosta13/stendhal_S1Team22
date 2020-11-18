@@ -15,9 +15,18 @@ import games.stendhal.server.entity.npc.action.PlaySoundAction;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
-//import games.stendhal.server.maps.ados.townhall.StorageUnit;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.ChatAction;
+
+/**
+ * This function defines the behaviour of 'Serena' a NPC who allows the player to use a storage unit
+ * 
+ * StorageChatAction defines the action that comes from talking to the NPC- in this case, creating and teleporting the player into a StorageUnit
+ *
+ * configureZone just calls buildNPC
+ * 
+ * buildNPC creates the NPC and links it to the quest file (StorageRenting.java)
+ */
 
 public class StorageNPC implements ZoneConfigurator {
 
@@ -25,6 +34,7 @@ public class StorageNPC implements ZoneConfigurator {
 		
 		@Override
 		public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+			// Creates a storage unit
 			final StendhalRPZone storagezone = (StendhalRPZone) SingletonRepository
 					.getRPWorld().getRPZone("int_storage_unit");
 			String zoneName = player.getName() + "_storage_unit";
@@ -32,6 +42,8 @@ public class StorageNPC implements ZoneConfigurator {
 			final StendhalRPZone zone = new StorageUnit(zoneName, storagezone, player);
 
 			SingletonRepository.getRPWorld().addRPZone(zone);
+			
+			// Teleports player to storage unit
 			player.teleport(zone, 4, 5, Direction.UP, player);
 			((SpeakerNPC) npc.getEntity()).setDirection(Direction.DOWN);
 		}
@@ -50,6 +62,7 @@ public class StorageNPC implements ZoneConfigurator {
 		        setPath(null);
 		    }
 		    
+			// Sets NPC Dialog
 		    @Override
 			public void createDialog() {
 				addGreeting("Hey there.");
@@ -57,12 +70,14 @@ public class StorageNPC implements ZoneConfigurator {
 				addJob("I rent storage units for people who just have too much stuff!");
 				addOffer("I'm happy to let you rent one of my storage units, for a fee.");
 				addGoodbye("See you later!");
+				
+				// 'Storage' should trigger the quest file one way or another
 				add(ConversationStates.ANY, "storage", new QuestCompletedCondition("storage_renting"), ConversationStates.IDLE, null,
 						new MultipleActions(new PlaySoundAction("keys-1", true), new StorageChatAction()));
 
 				add(ConversationStates.ANY, "storage", new QuestNotCompletedCondition("storage_renting"), ConversationStates.ATTENDING, "People having too much stuff means that I can buy more stuff!", null);
 
-				// remaining behaviour defined in games.stendhal.server.maps.quests.StorageRenting
+				// Remaining behaviour defined in games.stendhal.server.maps.quests.StorageRenting
 			}
 		
 			@Override
@@ -72,8 +87,9 @@ public class StorageNPC implements ZoneConfigurator {
 		
 		};
 		
+		// Set remaining characteristics of NPC
 		npc.setHP(95);
-		npc.setPosition(35, 14);
+		npc.setPosition(14, 8);
 		npc.setEntityClass("welcomernpc");
 		npc.setDescription("You see Serena. She looks like a savvy business woman.");
 		npc.setDirection(Direction.LEFT);

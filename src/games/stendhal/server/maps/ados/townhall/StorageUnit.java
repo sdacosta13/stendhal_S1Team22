@@ -20,9 +20,15 @@ import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.mapstuff.portal.Teleporter;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.player.Player;
+/**
+ * StorageUnit.java defines how a single storage unit works, including its layout, contents and behaviours
+ * 
+ *
+ */
+
 
 public class StorageUnit extends StendhalRPZone {
-	
+	// Initialise the four chests in the storage unit
 	private PersonalChest chest_1;
 	private PersonalChest chest_2;
 	private PersonalChest chest_3;
@@ -36,12 +42,15 @@ public class StorageUnit extends StendhalRPZone {
 
 	}
 
+	// Adds entities to the room such as chests, portal and bin
 	private void init(final Player player) {
 		Portal portal = new Teleporter(new Spot(player.getZone(),
 				player.getX(), player.getY()));
-		portal.setPosition(4, 8); // portal to leave?
+		// Exit portal
+		portal.setPosition(4, 8);
 		add(portal);
-
+		
+		// Set positions of all chests, add them
 		chest_1 = new PersonalChest();
 		chest_1.setPosition(4, 2);
 		add(chest_1);
@@ -55,12 +64,15 @@ public class StorageUnit extends StendhalRPZone {
 		chest_4.setPosition(2, 6);
 		add(chest_4); 
 		
+		
+		// Include a wastebin like in 'Vault.java' where items can be discarded
 		WalkBlocker walkblocker = new WalkBlocker();
 		walkblocker.setPosition(2, 5);
 		walkblocker
 				.setDescription("You see a wastebin, handily placed for items you wish to dispose of.");
 		add(walkblocker);
-		// Add a sign explaining about equipped items
+		
+		// Include a sign explaining about equipped items
 		final Sign book = new Sign();
 		book.setPosition(2, 2);
 		book
@@ -69,6 +81,7 @@ public class StorageUnit extends StendhalRPZone {
 		book.setResistance(0);
 		add(book);
 		disallowIn();
+		// Calls below function
 		this.addMovementListener(new StorageUnitMovementListener());
 	}
 
@@ -86,6 +99,9 @@ public class StorageUnit extends StendhalRPZone {
 			// ignore
 		}
 
+		// Deals with exiting the storage unit.
+		// Any items left in the unit that aren't in a chest or bin by returning them to player if possible. Otherwise, discard them.
+		// Sends the player a message about what has happened to their items
 		@Override
 		public void onExited(final ActiveEntity entity,
 				final StendhalRPZone zone, final int oldX, final int oldY) {
@@ -135,11 +151,11 @@ public class StorageUnit extends StendhalRPZone {
 						} else {
 							// the player lost their items
 							message = Grammar.quantityplnoun(item.getQuantity(), item.getName(), "A")
-												+ " which you left on the floor in the vault "+ Grammar.hashave(item.getQuantity())+" been thrown into "
+												+ " which you left on the floor in the storage unit"+ Grammar.hashave(item.getQuantity())+" been thrown into "
 												+ "the void, because there was no space to fit them into either your "
 												+ "bank chest or your bag.";
 
-							// the timeout method enters the zone and coords of item, this is useful we will know it was in vault
+							// the timeout method enters the zone and coords of item, this is useful we will know it was in storage unit
 							new ItemLogger().timeout(item);
 						}
 						}
@@ -152,15 +168,10 @@ public class StorageUnit extends StendhalRPZone {
 					}
 
 				}
-				// since we are about to destroy the unit, change the player
-				// zoneid to ados townhall so that if they are relogging,
-				// they can enter back to the townhall (not the default zone of
-				// PlayerRPClass).
-				// If they are scrolling out or walking out the portal it works
-				// as before.
-				entity.put("zoneid", "int_ados_townhall");  /// IS THIS THE RIGHT LOCAATION?
-				entity.put("x", "9"); ////////
-				entity.put("y", "27"); /////////
+				// Unit will be destroyed, so we return player back to townhall location
+				entity.put("zoneid", "int_ados_townhall");
+				entity.put("x", "9");
+				entity.put("y", "27");
 
 				TurnNotifier.get().notifyInTurns(2, new StorageUnitRemover(zone));
 			}
@@ -195,6 +206,7 @@ public class StorageUnit extends StendhalRPZone {
 
 	}
 	
+	// Removes chests
 	@Override
 	public void onFinish() throws Exception {
 		this.remove(chest_1);
