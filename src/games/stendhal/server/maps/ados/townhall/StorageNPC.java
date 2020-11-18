@@ -52,22 +52,15 @@ public class StorageNPC implements ZoneConfigurator {
 		    
 		    @Override
 			public void createDialog() {
-				addGreeting("<Greeting?");
-				/**addReply("storage", "You can store whatever you like in your storage unit, as long as you pay your rent in #advance!");
-				addReply("advance", "If rent isn't paid in advance, your unit will be emptied and your items left out for the public."
-			            + " A #small unit can hold three chests and costs 200 money per week,"
-					    + " while a #large unit can hold six chests and costs 300 money per week.");
-				addReply("small", "You'd like a small storage unit? That costs 200 money per week. Would you like to rent one?");
-				addReply("large", "Wow, you must have a lot of stuff! A large storage unit costs 300 money per week. Would you like to rent one?");
-				addReply("rent", "Great! How many weeks do you want to rent it for?");*/
-				addHelp("<Help Response>");
-				addJob("<Job Response?");
-				addOffer("<Offer Response>");
-				addGoodbye("<Bye Response>");
+				addGreeting("Hey there.");
+				addHelp("If you have too many belongings, I can rent you a storage unit to keep them in.");
+				addJob("I rent storage units for people who just have too much stuff!");
+				addOffer("I'm happy to let you rent one of my storage units, for a fee.");
+				addGoodbye("See you later!");
 				add(ConversationStates.ANY, "storage", new QuestCompletedCondition("storage_renting"), ConversationStates.IDLE, null,
 						new MultipleActions(new PlaySoundAction("keys-1", true), new StorageChatAction()));
 
-				add(ConversationStates.ANY, "storage", new QuestNotCompletedCondition("storage_renting"), ConversationStates.ATTENDING, "<Quest Started but not Finished Response>", null);
+				add(ConversationStates.ANY, "storage", new QuestNotCompletedCondition("storage_renting"), ConversationStates.ATTENDING, "People having too much stuff means that I can buy more stuff!", null);
 
 				// remaining behaviour defined in games.stendhal.server.maps.quests.StorageRenting
 			}
@@ -82,7 +75,7 @@ public class StorageNPC implements ZoneConfigurator {
 		npc.setHP(95);
 		npc.setPosition(35, 14);
 		npc.setEntityClass("welcomernpc");
-		npc.setDescription("You see Serena. She looks like a trustworthy, hardworking person.");
+		npc.setDescription("You see Serena. She looks like a savvy business woman.");
 		npc.setDirection(Direction.LEFT);
 		zone.add(npc);
 	}

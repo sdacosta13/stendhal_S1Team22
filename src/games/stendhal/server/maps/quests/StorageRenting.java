@@ -27,7 +27,8 @@ public class StorageRenting extends AbstractQuest{
 	
 	private static final String QUEST_SLOT = "storage_renting";
 	
-	
+	// Cost to rent storage unit for one month
+	private static final int COST = 800;
 	
 	@Override
 	public List<String> getHistory(final Player player) {
@@ -41,7 +42,7 @@ public class StorageRenting extends AbstractQuest{
 			res.add("But I don't need it yet.");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "start", "done")) {
-			res.add("I said I would user her storage unit.");
+			res.add("I said I would use her storage unit.");
 		}
 		if ("done".equals(questState)) {
 			res.add("I have used the storage unit.");
@@ -51,21 +52,21 @@ public class StorageRenting extends AbstractQuest{
 
 	private void prepareRequestingStep() {
 		final SpeakerNPC npc = npcs.get("Serena");
-
+		//Player asks about quest/task
 		npc.add(
 			ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestNotCompletedCondition(QUEST_SLOT),
 			ConversationStates.QUEST_OFFERED,
-			"If you have too much stuff, you can pay me 600 money to rent a storage unit. Would you like to rent one? ---# QUEST OFFERED",
+			"If you have too much stuff, you can pay me 800 money to rent a storage unit for a month. Would you like to rent one?",
 			null);
-		
+		// Quest already completed/player already has a storage unit
 		npc.add(
 				ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
-				"You already have a #storage unit. ---# NO MORE QUESTS",
+				"You already have a #storage unit.",
 				null);
 
 		// player is willing to help
@@ -74,7 +75,7 @@ public class StorageRenting extends AbstractQuest{
 			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
-			"Great- give me a moment to prepare the unit for you, and make sure you have the money for me. ---# <Quest Accepted>",
+			"Great- it'll take me a while to prepare your unit, so come back later, and make sure you have the money for me.",
 			new SetQuestAction(QUEST_SLOT, "start"));
 
 		// player is not willing to help
@@ -82,7 +83,7 @@ public class StorageRenting extends AbstractQuest{
 			ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.NO_MESSAGES, null,
 			ConversationStates.ATTENDING,
-			"Okay, well let me know if you change your mind. ---#<Quest Rejected>",
+			"Okay, well let me know if you change your mind.",
 			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 	}
 
@@ -94,20 +95,18 @@ public class StorageRenting extends AbstractQuest{
 			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 				new QuestInStateCondition(QUEST_SLOT, "start"),
 				new OrCondition(
-					new PlayerHasItemWithHimCondition("leather cuirass"),
-					new PlayerHasItemWithHimCondition("pauldroned leather cuirass"))),
+					new PlayerHasItemWithHimCondition("money", COST))),
 			ConversationStates.QUEST_ITEM_BROUGHT,
-			"I see that you have enough money for the storage unit. Is it for me? ---#<Player has item, quest incomplete>",
+			"I see that you have 800 money! Do you want to rent one of my storage units?",
 			null);
 		
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 					new QuestInStateCondition(QUEST_SLOT, "start"),
 					new NotCondition(new OrCondition(
-						new PlayerHasItemWithHimCondition("leather cuirass"),
-						new PlayerHasItemWithHimCondition("pauldroned leather cuirass")))),
+						new PlayerHasItemWithHimCondition("money", COST)))),
 				ConversationStates.ATTENDING,
-				"If you want to use a storage unit, you'll need to bring me 600 money. ---#<Player DOES NOT have item, quest incomplete>",
+				"If you want to use a storage unit, you'll need to bring me 800 money.",
 				null);
 
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
@@ -118,8 +117,8 @@ public class StorageRenting extends AbstractQuest{
 				ConversationPhrases.YES_MESSAGES,
 				// make sure the player isn't cheating by putting the armor
 				// away and then saying "yes"
-				new PlayerHasItemWithHimCondition("leather cuirass"),
-				ConversationStates.ATTENDING, "Oh great! Just find me whenever you want to use your unit. ---# <Item brought, item given, Quest Complete>",
+				new PlayerHasItemWithHimCondition("money", COST),
+				ConversationStates.ATTENDING, "Oh great! When you need to use your #storage unit, let me know.",
 				new MultipleActions(reward));
 		
 		npc.add(
@@ -127,7 +126,7 @@ public class StorageRenting extends AbstractQuest{
 				ConversationPhrases.NO_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
-				"Okay, I guess you don't need me storage unit right now. Find me if you change your mind. ---#<Item brought, item NOT given, Quest Incomplete>",
+				"Okay, I guess you don't need a storage unit right now. Find me if you change your mind.",
 				null);
 		
 	}
