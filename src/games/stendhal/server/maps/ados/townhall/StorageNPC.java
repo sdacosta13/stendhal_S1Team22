@@ -29,11 +29,14 @@ import games.stendhal.server.entity.npc.ChatAction;
  */
 
 public class StorageNPC implements ZoneConfigurator {
+	// Cost to rent storage unit
+	private static final int COST = 800;
 
 	private static final class StorageChatAction implements ChatAction {
 		
 		@Override
-		public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+		public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {			
+			player.drop("money", COST);
 			// Creates a storage unit
 			final StendhalRPZone storagezone = (StendhalRPZone) SingletonRepository
 					.getRPWorld().getRPZone("int_storage_unit");

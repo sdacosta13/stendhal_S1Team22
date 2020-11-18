@@ -31,7 +31,7 @@ public class StorageRenting extends AbstractQuest{
 	
 	private static final String QUEST_SLOT = "storage_renting";
 	
-	// Cost to rent storage unit for one month
+	// Cost to rent storage unit
 	private static final int COST = 800;
 	
 	// Records 'history' of this quest for the player
