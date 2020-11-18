@@ -8,6 +8,7 @@ import marauroa.common.game.RPObject;
 
 public class StorageUnitRemover implements TurnListener {
 	private StendhalRPZone zone;
+	
 	public StorageUnitRemover(StendhalRPZone zone) {
 		this.zone = zone;
 	}

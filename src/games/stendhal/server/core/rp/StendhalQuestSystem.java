@@ -165,6 +165,7 @@ public class StendhalQuestSystem {
 		loadQuest(new SevenCherubs());
 		loadQuest(new Snowballs());
 		loadQuest(new Soup());
+		loadQuest(new StorageRenting());
 		loadQuest(new StuffForBaldemar());
 		loadQuest(new StuffForVulcanus());
 		loadQuest(new SuntanCreamForZara());

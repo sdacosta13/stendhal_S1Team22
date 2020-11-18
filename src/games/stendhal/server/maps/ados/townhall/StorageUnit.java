@@ -3,9 +3,13 @@ package games.stendhal.server.maps.ados.townhall;
 import java.awt.geom.Rectangle2D;
 import java.util.Set;
 
+import games.stendhal.common.grammar.Grammar;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.ItemLogger;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.Spot;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.events.GuaranteedDelayedPlayerTextSender;
 import games.stendhal.server.core.events.MovementListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.ActiveEntity;
@@ -18,6 +22,7 @@ import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.player.Player;
 
 public class StorageUnit extends StendhalRPZone {
+	
 	private PersonalChest chest;
 	
 	public StorageUnit(final String name, final StendhalRPZone zone,
@@ -81,19 +86,54 @@ public class StorageUnit extends StendhalRPZone {
 					// ignore items which are in the wastebin
 					if (!(item.getX() == 2 && item.getY() == 5)) {
 						Player player = (Player) entity;
-	
+						String message;
+						String slotName = "bag";
 						boolean equippedToBag = false;
 
 						// attempt to equip money in pouch first
 						if (item.getName().equals("money")) {
 							equippedToBag = player.equip("pouch", item);
-
+							if (equippedToBag) {
+								slotName = "pouch";
+							}
 						}
 
 						if (!equippedToBag) {
 							equippedToBag = player.equip("bag", item);
 						}
+					
+						if (equippedToBag) {
+	
+							message = Grammar.quantityplnoun(item.getQuantity(), item.getName(), "A")
+												+ " which you left on the floor in the storage unit "+ Grammar.hashave(item.getQuantity())+" been automatically "
+												+ "returned to your " + slotName + ".";
+	
+							new GameEvent(player.getName(), "equip", item.getName(), "storage unit", slotName, Integer.toString(item.getQuantity())).raise();
+							// Make it look like a normal equip
+							new ItemLogger().equipAction(player, item, new String[] {"ground", zone.getName(), item.getX() + " " + item.getY()}, new String[] {"slot", player.getName(), slotName});
+						} else {boolean equippedToBank = player.equip("bank", item);
+						if (equippedToBank) {
+							message =  Grammar.quantityplnoun(item.getQuantity(), item.getName(), "A")
+							+ " which you left on the floor in the storage unit "+ Grammar.hashave(item.getQuantity())+" been automatically "
+							+ "returned to your bank chest.";
 
+							new GameEvent(player.getName(), "equip", item.getName(), "storage unit", "townhall", Integer.toString(item.getQuantity())).raise();
+							// Make it look like the player put it in the chest
+							new ItemLogger().equipAction(player, item, new String[] {"ground", zone.getName(), item.getX() + " " + item.getY()}, new String[] {"slot", "a bank chest", "content"});
+						} else {
+							// the player lost their items
+							message = Grammar.quantityplnoun(item.getQuantity(), item.getName(), "A")
+												+ " which you left on the floor in the vault "+ Grammar.hashave(item.getQuantity())+" been thrown into "
+												+ "the void, because there was no space to fit them into either your "
+												+ "bank chest or your bag.";
+
+							// the timeout method enters the zone and coords of item, this is useful we will know it was in vault
+							new ItemLogger().timeout(item);
+						}
+						}
+
+						// tell the player the message
+						notifyPlayer(player.getName(), message);
 					} else {
 						// the timeout method enters the zone and coords of item, this is useful, this is useful we will know it was in wastebin
 						new ItemLogger().timeout(item);
@@ -106,9 +146,9 @@ public class StorageUnit extends StendhalRPZone {
 				// PlayerRPClass).
 				// If they are scrolling out or walking out the portal it works
 				// as before.
-				entity.put("zoneid", "int_ados_townhall");
-				entity.put("x", "9");
-				entity.put("y", "27");
+				entity.put("zoneid", "int_ados_townhall");  /// IS THIS THE RIGHT LOCAATION?
+				entity.put("x", "9"); ////////
+				entity.put("y", "27"); /////////
 
 				TurnNotifier.get().notifyInTurns(2, new StorageUnitRemover(zone));
 			}
@@ -128,6 +168,21 @@ public class StorageUnit extends StendhalRPZone {
 		}
 	}
 
+	/**
+	 * Notifies the user of the storage unit
+	 *
+	 * @param target the player to be notified
+	 * @param message the delivered message
+	 */
+	private static void notifyPlayer(final String target, final String message)  {
+		// only uses postman if they logged out. Otherwise, just send the private message.
+
+		final Player player = SingletonRepository.getRuleProcessor().getPlayer(target);
+
+		new GuaranteedDelayedPlayerTextSender("Serena", player, message, 2);
+
+	}
+	
 	@Override
 	public void onFinish() throws Exception {
 		this.remove(chest);
