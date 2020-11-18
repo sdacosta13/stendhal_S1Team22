@@ -219,8 +219,7 @@ public class SingletonRepository {
 	}
 
 	public static DeniranFerry getDeniranFerry() {
-		// TODO Auto-generated method stub
-		return null;
+		return DeniranFerry.get();
 	}
 
 }
