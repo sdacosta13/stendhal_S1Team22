@@ -21,7 +21,7 @@ public class Wand extends Item{
 	public boolean onUsed(RPEntity user) {
 		if (user.getAttackTarget() != null) {
 			target = user.getAttackTarget();
-			target.setBaseSpeed(target.getBaseSpeed() - 5);
+			target.setBaseSpeed(target.getBaseSpeed() / 2);
 			return true;
 		}
 

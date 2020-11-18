@@ -119,11 +119,10 @@
     <value value="142610"/>
     <equipable>
       <slot name="ground"/>
-      <slot name="content"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
       <slot name="bag"/>
-      <slot name="trade"/>
+      <slot name="trade"/><slot name="content" />
     </equipable>
   </item>
 
@@ -203,7 +202,8 @@
 		<attributes>
 			<atk value="2" />
 			<ratk value="2" />
-			<range value="6"></range></attributes>
+			<range value="6"></range>
+			<menu value="Use|Use" /></attributes>
 		<weight value="3.0" /><value value="123420" />
 	<equipable>
 		<slot name="ground" />

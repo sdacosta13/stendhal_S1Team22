@@ -61,8 +61,9 @@ public class WandExistsTest {
 		boolean hit = false;
 		while(!hit) {
 			hit = player.attack();
+			wand.onUsed(player);
 		}
-		player.stopAttack();;
+		player.stopAttack();
 		assertTrue(moveSpeed > victim.getBaseSpeed());
 		
 		
