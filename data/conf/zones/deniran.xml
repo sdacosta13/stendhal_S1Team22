@@ -7,7 +7,119 @@
 		Please respect it! -->
 
 	<!-- Ground level -->
+	
+	<zone name="0_deniran_ferrt_n" level="0" x="500768" y="500384" file="Level 0/athor/ship_w2.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying(rain=-1,fog=+1,temperature=+2)</parameter>
+    </attributes>
 
+    <entity x="34" y="39">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
+     	  <parameter name="species">mackerel</parameter>
+      </implementation>
+    </entity>
+
+    <entity x="15" y="31">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">1</parameter>
+        <parameter name="radius">10</parameter>
+      </implementation>
+    </entity>
+
+    <entity x="30" y="31">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">1</parameter>
+        <parameter name="radius">10</parameter>
+      </implementation>
+    </entity>
+
+    <entity x="30" y="39">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">1</parameter>
+        <parameter name="radius">10</parameter>
+      </implementation>
+    </entity>
+
+    <entity x="15" y="39">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">1</parameter>
+        <parameter name="radius">10</parameter>
+      </implementation>
+    </entity>
+
+    <entity x="22" y="25">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">2</parameter>
+        <parameter name="radius">5</parameter>
+      </implementation>
+    </entity>
+
+    <entity x="22" y="48">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">2</parameter>
+        <parameter name="radius">8</parameter>
+      </implementation>
+    </entity>
+  </zone>
+
+  <zone name="0_athor_island_w" level="0" x="500896" y="500384" file="Level 0/athor/island_w.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying(rain=-2, temperature=+5)</parameter>
+    </attributes>
+
+    <entity x="90" y="45">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
+        <parameter name="species">clownfish</parameter>
+      </implementation>
+    </entity>
+
+    <!-- Ambiance on dock -->
+    <entity x="89" y="48">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">loop/water-sloshing-01</parameter>
+        <parameter name="radius">7</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
+
+    <!-- table around palms -->
+    <entity x="109" y="62">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a nice clean table for resting your holiday drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+
+    <entity x="112" y="69">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a nice clean table for resting your holiday drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+
+    <entity x="103" y="74">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a nice clean table for resting your holiday drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+
+  </zone>
+  
 	<zone name="0_deniran_forest_n2_w" level="0" x="499104" y="499744"
 	    file="Level 0/deniran/forest_n2_w.tmx">
 
@@ -1605,5 +1717,6 @@
 		</portal>
 
 	</zone>
+  
 
 </zones>
