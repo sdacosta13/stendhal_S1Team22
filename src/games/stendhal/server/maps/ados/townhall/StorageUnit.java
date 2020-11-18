@@ -23,7 +23,10 @@ import games.stendhal.server.entity.player.Player;
 
 public class StorageUnit extends StendhalRPZone {
 	
-	private PersonalChest chest;
+	private PersonalChest chest_1;
+	private PersonalChest chest_2;
+	private PersonalChest chest_3;
+	private PersonalChest chest_4;
 	
 	public StorageUnit(final String name, final StendhalRPZone zone,
 			final Player player) {
@@ -36,13 +39,22 @@ public class StorageUnit extends StendhalRPZone {
 	private void init(final Player player) {
 		Portal portal = new Teleporter(new Spot(player.getZone(),
 				player.getX(), player.getY()));
-		portal.setPosition(4, 8);
+		portal.setPosition(4, 8); // portal to leave?
 		add(portal);
 
-		chest = new PersonalChest();
-		chest.setPosition(4, 2);
-		add(chest);
-
+		chest_1 = new PersonalChest();
+		chest_1.setPosition(4, 2);
+		add(chest_1);
+		chest_2 = new PersonalChest();
+		chest_2.setPosition(6, 4);
+		add(chest_2);
+		chest_3 = new PersonalChest();
+		chest_3.setPosition(6, 6);
+		add(chest_3);
+		chest_4 = new PersonalChest();
+		chest_4.setPosition(2, 6);
+		add(chest_4); 
+		
 		WalkBlocker walkblocker = new WalkBlocker();
 		walkblocker.setPosition(2, 5);
 		walkblocker
@@ -185,7 +197,10 @@ public class StorageUnit extends StendhalRPZone {
 	
 	@Override
 	public void onFinish() throws Exception {
-		this.remove(chest);
+		this.remove(chest_1);
+		this.remove(chest_2);
+		this.remove(chest_3);
+		this.remove(chest_4);
 
 	}
 }
