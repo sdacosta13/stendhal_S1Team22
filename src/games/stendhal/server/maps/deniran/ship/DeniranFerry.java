@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.deniran;
+package games.stendhal.server.maps.deniran.ship;
 
 import java.util.LinkedList;
 import java.util.List;

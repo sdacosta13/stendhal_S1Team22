@@ -30,7 +30,7 @@ import games.stendhal.server.entity.player.GagManager;
 import games.stendhal.server.entity.player.Jail;
 import games.stendhal.server.entity.slot.BankAccessorManager;
 import games.stendhal.server.maps.athor.ship.AthorFerry;
-import games.stendhal.server.maps.deniran.DeniranFerry;
+import games.stendhal.server.maps.deniran.ship.DeniranFerry;
 import marauroa.server.db.TransactionPool;
 
 
