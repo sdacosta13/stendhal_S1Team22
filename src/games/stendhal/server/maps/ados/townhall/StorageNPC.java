@@ -15,7 +15,7 @@ import games.stendhal.server.entity.npc.action.PlaySoundAction;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.ados.townhall.StorageUnit;
+//import games.stendhal.server.maps.ados.townhall.StorageUnit;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.ChatAction;
 
