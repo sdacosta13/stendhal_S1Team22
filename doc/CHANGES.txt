@@ -2,6 +2,20 @@ Changelog
 ---------
 ---------
 
+1.36uom
+
+*world*
+- new zones:
+  - Added a storage unit zone
+  - Added DeniranFerry as a zone
+- new items:
+  - Added wand of sluggishness
+- new npcs:
+  - Added CaptainNPC for DeniranFerry
+  - Added StorageNPC in Ados townhall
+- new quests:
+  - Added StorageRenting quest
+
 1.35
 
 *world*

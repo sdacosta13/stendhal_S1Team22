@@ -201,3 +201,16 @@ Notable contributors:
 - SnowFlake
   · Maps maker
   · NPCs
+- Younggang Wang
+  . Fast transport between Ados and Deniran feature
+- Yanan Zhang
+  . Fast transport between Ados and Deniran feature
+- Yanyi Li
+  . Fast transport between Ados and Deniran feature
+- Sam Da Costa
+  . Wand of sluggishness quest feature
+- Simonas Babilius
+  . Wand of sluggishness quest feature
+- Gabrielle Mannifield
+  . Solution to the storage space problem feature
+  
