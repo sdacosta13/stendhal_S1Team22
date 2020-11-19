@@ -2682,7 +2682,7 @@ You should never dive with a cold or severe allergy because, you may not be able
     </entity>
     
     <!-- NPC -->
- 	<configurator class-name="games.stendhal.server.maps.ados.townhall.StorageNPC" />s
+ 	<configurator class-name="games.stendhal.server.maps.ados.townhall.StorageNPC" />
 
     <entity x="24" y="2">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
