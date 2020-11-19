@@ -175,6 +175,10 @@ Walk on, and you will be returned to the land of the living...
   <zone name="int_vault" file="interiors/abstract/vault.tmx"
     accessible="false">
   </zone>
+  
+   <zone name="int_storage_unit" file="interiors/abstract/vault.tmx"
+    accessible="false">
+  </zone>
 
   <zone name="int_adventure_island" file="interiors/abstract/adventure_island.tmx"
     accessible="false">

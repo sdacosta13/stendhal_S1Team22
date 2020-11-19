@@ -2680,6 +2680,9 @@ You should never dive with a cold or severe allergy because, you may not be able
         <parameter name="volume">80</parameter>
       </implementation>
     </entity>
+    
+    <!-- NPC -->
+ 	<configurator class-name="games.stendhal.server.maps.ados.townhall.StorageNPC" />
 
     <entity x="24" y="2">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
@@ -2718,7 +2721,7 @@ You should never dive with a cold or severe allergy because, you may not be able
     <portal x="3" y="3" ref="downstairs">
       <destination zone="int_ados_town_hall_2" ref="upstairs" />
     </portal>
-
+    
   </zone>
 
   <zone name="int_ados_fishermans_hut_west" file="interiors/ados/fishermans_hut_west.tmx">
