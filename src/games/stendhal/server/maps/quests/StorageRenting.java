@@ -41,16 +41,16 @@ public class StorageRenting extends AbstractQuest{
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("I have met Serena. She has a storage unit I can use.");
+		res.add("I have met Serena. She has a storage unit I can pay to use.");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if ("rejected".equals(questState)) {
 			res.add("But I don't need it yet.");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "start", "done")) {
-			res.add("I said I would use her storage unit.");
+			res.add("I said I would like to use it.");
 		}
 		if ("done".equals(questState)) {
-			res.add("I have used the storage unit.");
+			res.add("I paid Serena to use a storage unit.");
 		}
 		return res;
 	}
