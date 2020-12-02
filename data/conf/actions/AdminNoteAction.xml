@@ -12,6 +12,6 @@
 		<key>note</key>
 		<value><remainder></remainder></value>
 	</keypair>
-	<minParam>1</minParam>
 	<maxParam>1</maxParam>
+	<minParam>1</minParam>
 </action>
