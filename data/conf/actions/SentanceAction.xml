@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<action>
+	<if param1="" operator="" param2="">
+		<return>false</return>
+	</if>
+	<keypair>
+		<key>type</key>
+		<value>sentence</value>
+	</keypair>
+	<keypair>
+		<key>value</key>
+		<value><remainder></remainder></value>
+	</keypair>
+</action>
