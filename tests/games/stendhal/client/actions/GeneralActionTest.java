@@ -11,34 +11,30 @@ public class GeneralActionTest {
 
 	@Test
 	public void TestAutoWalkCreation() {
-		boolean eOccured = false;
 		try {
 			GeneralAction autowalk = new GeneralAction("AutoWalkAction.xml");
-			if(autowalk.toUse == null) {
+			if(autowalk.getActionComponents() == null) {
 				fail();
 			}
 		} catch(Exception e) {
-			eOccured = true;
-		}
-		if(eOccured) {
 			fail();
 		}
 	}
 	@Test
 	public void TestAutoWalkKeyPairsSame() {
 		GeneralAction autowalk = new GeneralAction("AutoWalkAction.xml");
-		ActionComponents comp = autowalk.toUse;
+		ActionComponents comp = autowalk.getActionComponents();
 		LinkedHashMap<String, String> golden = new LinkedHashMap<String,String>();
 		golden.put("TYPE","WALK");
 		golden.put("TARGET","remainder");
-		if(!golden.equals(comp)) {
+		if(!golden.equals(comp.RPActionParams)) {
 			fail();
 		}
 	}
 	@Test
 	public void checkParamCountForAutoWalk() {
 		GeneralAction autowalk = new GeneralAction("AutoWalkAction.xml");
-		ActionComponents comp = autowalk.toUse;
+		ActionComponents comp = autowalk.getActionComponents();
 		try {
 			assertTrue(comp.minParams == 0);
 			assertTrue(comp.maxParams == 0);
@@ -52,7 +48,7 @@ public class GeneralActionTest {
 		boolean eOccured = false;
 		try {
 			GeneralAction autowalk = new GeneralAction("AdminNoteAction.xml");
-			if(autowalk.toUse == null) {
+			if(autowalk.getActionComponents() == null) {
 				fail();
 			}
 		} catch(Exception e) {
@@ -65,19 +61,19 @@ public class GeneralActionTest {
 	@Test
 	public void TestAdminNoteKeyPairsSame() {
 		GeneralAction autowalk = new GeneralAction("AdminNoteAction.xml");
-		ActionComponents comp = autowalk.toUse;
+		ActionComponents comp = autowalk.getActionComponents();
 		LinkedHashMap<String, String> golden = new LinkedHashMap<String,String>();
 		golden.put("type","adminnote");
 		golden.put("target","params0");
 		golden.put("note","remainder");
-		if(!golden.equals(comp)) {
+		if(!golden.equals(comp.RPActionParams)) {
 			fail();
 		}
 	}
 	@Test
 	public void checkParamCountForAdminNote() {
 		GeneralAction autowalk = new GeneralAction("AdminNoteAction.xml");
-		ActionComponents comp = autowalk.toUse;
+		ActionComponents comp = autowalk.getActionComponents();
 		try {
 			assertTrue(comp.minParams == 1);
 			assertTrue(comp.maxParams == 1);
@@ -91,7 +87,7 @@ public class GeneralActionTest {
 		boolean eOccured = false;
 		try {
 			GeneralAction autowalk = new GeneralAction("AlterQuestAction.xml");
-			if(autowalk.toUse == null) {
+			if(autowalk.getActionComponents() == null) {
 				fail();
 			}
 		} catch(Exception e) {
@@ -104,19 +100,19 @@ public class GeneralActionTest {
 	@Test
 	public void TestAlterQuestKeyPairsSame() {
 		GeneralAction autowalk = new GeneralAction("AlterQuestAction.xml");
-		ActionComponents comp = autowalk.toUse;
+		ActionComponents comp = autowalk.getActionComponents();
 		LinkedHashMap<String, String> golden = new LinkedHashMap<String,String>();
 		golden.put("type","alterquest");
 		golden.put("target","params0");
 		golden.put("name","params1");
-		if(!golden.equals(comp)) {
+		if(!golden.equals(comp.RPActionParams)) {
 			fail();
 		}
 	}
 	@Test
 	public void checkParamCountForAlterQuest() {
 		GeneralAction autowalk = new GeneralAction("AlterQuestAction.xml");
-		ActionComponents comp = autowalk.toUse;
+		ActionComponents comp = autowalk.getActionComponents();
 		try {
 			assertTrue(comp.minParams == 2);
 			assertTrue(comp.maxParams == 3);
@@ -130,7 +126,7 @@ public class GeneralActionTest {
 		boolean eOccured = false;
 		try {
 			GeneralAction autowalk = new GeneralAction("SentenceAction.xml");
-			if(autowalk.toUse == null) {
+			if(autowalk.getActionComponents() == null) {
 				fail();
 			}
 		} catch(Exception e) {
@@ -143,18 +139,23 @@ public class GeneralActionTest {
 	@Test
 	public void TestSentanceKeyPairsSame() {
 		GeneralAction autowalk = new GeneralAction("SentenceAction.xml");
-		ActionComponents comp = autowalk.toUse;
+		
+		ActionComponents comp = autowalk.getActionComponents();
 		LinkedHashMap<String, String> golden = new LinkedHashMap<String,String>();
 		golden.put("type","sentence");
 		golden.put("value","remainder");
-		if(!golden.equals(comp)) {
+		
+		if(!golden.equals(comp.RPActionParams)) {
 			fail();
 		}
+		
+		
+		
 	}
 	@Test
 	public void checkParamCountForSentence() {
 		GeneralAction autowalk = new GeneralAction("SentenceAction.xml");
-		ActionComponents comp = autowalk.toUse;
+		ActionComponents comp = autowalk.getActionComponents();
 		try {
 			assertTrue(comp.minParams == 0);
 			assertTrue(comp.maxParams == 0);
@@ -168,7 +169,7 @@ public class GeneralActionTest {
 		boolean eOccured = false;
 		try {
 			GeneralAction autowalk = new GeneralAction("AnswerAction.xml");
-			if(autowalk.toUse == null) {
+			if(autowalk.getActionComponents() == null) {
 				fail();
 			}
 		} catch(Exception e) {
@@ -181,21 +182,21 @@ public class GeneralActionTest {
 	@Test
 	public void TestAnswerKeyPairsSame() {
 		GeneralAction autowalk = new GeneralAction("AnswerAction.xml");
-		ActionComponents comp = autowalk.toUse;
+		ActionComponents comp = autowalk.getActionComponents();
 		LinkedHashMap<String, String> golden = new LinkedHashMap<String,String>();
 		golden.put("type","answer");
 		golden.put("text","remainder");
-		if(!golden.equals(comp)) {
+		if(!golden.equals(comp.RPActionParams)) {
 			fail();
 		}
 	}
 	@Test
 	public void checkParamCountForAnswerAction() {
 		GeneralAction autowalk = new GeneralAction("AnswerAction.xml");
-		ActionComponents comp = autowalk.toUse;
+		ActionComponents comp = autowalk.getActionComponents();
 		try {
-			assertTrue(comp.minParams == 0);
-			assertTrue(comp.maxParams == 1);
+			assertTrue(comp.minParams == 1);
+			assertTrue(comp.maxParams == 0);
 		} catch (NullPointerException e) {
 			fail();
 		}

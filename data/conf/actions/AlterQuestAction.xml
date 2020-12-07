@@ -6,16 +6,16 @@
 	</keypair>
 	<keypair>
 		<key value="target"></key>
-		<value value="param" index="0"></value>
+		<value value="params" index="0"></value>
 	</keypair>
 	<keypair>
 		<key value="name"></key>
-		<value value="param" index="1"></value>
+		<value value="params" index="1"></value>
 	</keypair>
 	<keypair optional="1">
 		<key value="state"></key>
-		<value value="param" index="2"></value>
+		<value value="params" index="2"></value>
 	</keypair>
-	<maxparam value="3"></maxparam>
+	<maxParam value="3"></maxParam>
 	<minParam value="2"></minParam>
 </action>

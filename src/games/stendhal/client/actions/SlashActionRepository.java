@@ -43,12 +43,12 @@ public class SlashActionRepository {
 		actions.put("/", new RemessageAction());
 		actions.put("add", new AddBuddyAction());
 		actions.put("adminlevel", new AdminLevelAction());
-		actions.put("adminnote", new AdminNoteAction());
+		actions.put("adminnote", new GeneralAction("AdminNoteAction.xml"));
 		actions.put("alter", new AlterAction());
 		actions.put("altercreature", new AlterCreatureAction());
 		actions.put(ALTERKILL, new AlterKillAction());
-		actions.put("alterquest", new AlterQuestAction());
-		actions.put("answer", new AnswerAction());
+		actions.put("alterquest", new GeneralAction("AlterQuestAction.xml"));
+		actions.put("answer", new GeneralAction("AnswerAction.xml"));
 		actions.put("atlas", new AtlasBrowserLaunchCommand());
 		actions.put("away", new AwayAction());
 
@@ -75,7 +75,7 @@ public class SlashActionRepository {
 		actions.put("ignore", new IgnoreAction());
 		actions.put("inspect", new InspectAction());
 		actions.put(INSPECTKILL, new InspectKillAction());
-		actions.put(INSPECTQUEST, new InspectQuestAction());
+		actions.put(INSPECTQUEST, new GeneralAction("InspectQuestAction.xml"));
 		actions.put("invisible", new InvisibleAction());
 
 		actions.put("jail", new JailAction());
@@ -96,8 +96,8 @@ public class SlashActionRepository {
 
 		actions.put("remove", new RemoveBuddyAction());
 
-		actions.put("sentence", new SentenceAction());
-		actions.put("status", new SentenceAction()); // Alias for /sentence
+		actions.put("sentence", new GeneralAction("SentenceAction.xml"));
+		actions.put("status", new GeneralAction("SentenceAction.xml")); // Alias for /sentence
 		actions.put("settings", new SettingsAction());
 
 		actions.put("sound", new SoundAction());
@@ -125,7 +125,8 @@ public class SlashActionRepository {
 //		actions.put("wrap", new WrapAction());
 
 		/* Movement */
-		actions.put("walk", new AutoWalkAction());
+		actions.put("walk", new GeneralAction("AutoWalkAction.xml"));
+		//actions.put("walk", new AutoWalkAction());
 		actions.put("stopwalk", new AutoWalkStopAction());
 		actions.put("movecont", new MoveContinuousAction());
 

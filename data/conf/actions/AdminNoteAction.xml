@@ -6,7 +6,7 @@
 	</keypair>
 	<keypair>
 		<key value="target"/>
-		<value value="param" index="0"/>
+		<value value="params" index="0"/>
 	</keypair>
 	<keypair>
 		<key value="note"></key>
