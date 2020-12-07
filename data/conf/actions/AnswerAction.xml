@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<action>
+	<errorOnRemainder></errorOnRemainder>
+	<keypair>
+		<key value="type"></key>
+		<value value="answer"></value>
+	</keypair>
+	<keypair>
+		<key value="text"></key>
+		<value value="remainder"></value>
+	</keypair>
+	<maxParam value="0"></maxParam>
+	<minParam value="1"></minParam>
+</action>

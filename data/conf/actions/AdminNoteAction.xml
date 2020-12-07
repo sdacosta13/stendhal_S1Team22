@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <action>
 	<keypair>
-		<key>type</key>
-		<value>adminnote</value>
+		<key value = "type"/>
+		<value value="adminnote"/>
 	</keypair>
 	<keypair>
-		<key>target</key>
-		<value><param>0</param></value>
+		<key value="target"/>
+		<value value="param" index="0"/>
 	</keypair>
 	<keypair>
-		<key>note</key>
-		<value><remainder></remainder></value>
+		<key value="note"></key>
+		<value value="remainder"></value>
 	</keypair>
-	<maxParam>1</maxParam>
-	<minParam>1</minParam>
+	<maxParam value="1"></maxParam>
+	<minParam value="1"></minParam>
 </action>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<action>
+	<keypair>
+		<key value="type"></key>
+		<value value="alterquest"></value>
+	</keypair>
+	<keypair>
+		<key value="target"></key>
+		<value value="param" index="0"></value>
+	</keypair>
+	<keypair>
+		<key value="name"></key>
+		<value value="param" index="1"></value>
+	</keypair>
+	<keypair optional="1">
+		<key value="state"></key>
+		<value value="param" index="2"></value>
+	</keypair>
+	<maxparam value="3"></maxparam>
+	<minParam value="2"></minParam>
+</action>
