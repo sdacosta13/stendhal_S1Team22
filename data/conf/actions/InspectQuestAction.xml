@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<action>
+	<keypair>
+		<key value="type"></key>
+		<value value="INSPECTQUEST"></value>
+	</keypair>
+	<keypair>
+		<key value="target"></key>
+		<value value="param" index="0"></value>
+	</keypair>
+	<keypair>
+		<key value="quest_slot"></key>
+		<value value="param" index="1"></value>
+	</keypair>
+	<maxParam value="2"></maxParam>
+	<minParam value="2"></minParam>
+</action>
