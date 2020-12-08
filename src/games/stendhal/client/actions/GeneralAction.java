@@ -48,7 +48,7 @@ public class GeneralAction implements SlashAction{
 		LinkedHashMap<String, String> keypairs = toUse.RPActionParams;
 		for(Map.Entry<String, String> entry : keypairs.entrySet()) {
 			if(entry.getValue().contains("param")) {
-				int index = Integer.parseInt(entry.getValue().substring(5,entry.getValue().length()));
+				int index = Integer.parseInt(entry.getValue().substring(6,entry.getValue().length()));
 				if(index <= this.getMinimumParameters() - 1) {
 					return false;
 				}
@@ -90,7 +90,8 @@ public class GeneralAction implements SlashAction{
 					String b = entry.getValue();
 					if(this.checkForConstant(a)) {
 						a = this.convertToEnum(entry.getKey());
-					} else if(this.checkForConstant(b)) {
+					}
+					if(this.checkForConstant(b)) {
 						b = this.convertToEnum(entry.getValue());
 					}
 					generalRPAction.put(a.toLowerCase(), b.toLowerCase());
