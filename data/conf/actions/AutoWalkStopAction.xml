@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<action xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ActionsSchema.xsd">
+	<keypair>
+		<key value="TYPE"></key>
+		<value value="WALK"></value>
+	</keypair>
+	<keypair>
+		<key value="TARGET"></key>
+		<value value="remainder"></value>
+	</keypair>
+	<keypair>
+		<key value="MODE"></key>
+		<value value="stop"></value>
+	</keypair>
+	<maxParam value="0"></maxParam>
+	<minParam value="0"></minParam>
+</action>

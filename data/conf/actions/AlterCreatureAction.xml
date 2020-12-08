@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<action xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ActionsSchema.xsd">
+	<keypair>
+		<key value = "type"/>
+		<value value="altercreature"/>
+	</keypair>
+	<keypair>
+		<key value="target"/>
+		<value value="params" index="0"/>
+	</keypair>
+	<keypair>
+		<key value="text"/>
+		<value value="params" index="1"/>
+	</keypair>
+	<maxParam value="2"></maxParam>
+	<minParam value="2"></minParam>
+</action>
