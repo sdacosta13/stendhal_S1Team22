@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<action xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ActionsSchema.xsd">
+	<keypair>
+		<key value = "type"/>
+		<value value="teleport"/>
+	</keypair>
+	<keypair>
+		<key value="target"/>
+		<value value="params" index="0"/>
+	</keypair>
+	<keypair>
+		<key value="zone"></key>
+		<value value="params" index="1"></value>
+	</keypair>
+	<keypair>
+		<key value="x"></key>
+		<value value="params" index="2"></value>
+	</keypair>
+	<keypair>
+		<key value="y"></key>
+		<value value="params" index="3"></value>
+	</keypair>
+	<maxParam value="4"></maxParam>
+	<minParam value="4"></minParam>
+</action>
