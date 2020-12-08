@@ -38,14 +38,14 @@ public class ClickModeActionTest {
 	
 	
 	@Test
-	public void testDoubleClickMode() {
+	public void testDoubleClickMode() {// test when current mode is double click but will be set to single click
 		final ClickModeAction cl = new ClickModeAction();
 		assertTrue(cl.execute(new String[] {null}, null));
 		assertEquals("Click mode is now set to single click.",getInterface().getLastEventLine());
 		
 	}
 	@Test 
-	public void testSingleClickMode() {
+	public void testSingleClickMode() {//test when current mode is single click but will be set to double click
 		final ClickModeAction cl = new ClickModeAction();
 		assertTrue(cl.execute(new String[] {null}, null));
 		assertEquals("Click mode is now set to double click.",getInterface().getLastEventLine());
