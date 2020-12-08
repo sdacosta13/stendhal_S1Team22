@@ -19,6 +19,7 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import games.stendhal.client.MockStendhalClient;
@@ -26,6 +27,11 @@ import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
 
 public class AlterCreatureActionTest {
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		SlashActionRepository.register();
+	}
 
 	@After
 	public void tearDown() throws Exception {
@@ -45,7 +51,7 @@ public class AlterCreatureActionTest {
 				assertEquals("schnack", action.get("text"));
 			}
 		};
-		final AlterCreatureAction action = new AlterCreatureAction();
+		final SlashAction action = SlashActionRepository.get("altercreature");
 		assertFalse(action.execute(null, null));
 		assertFalse(action.execute(new String[] { "schnick" }, null));
 		assertTrue(action.execute(new String[] { "schnick", "schnack" }, null));
@@ -56,7 +62,7 @@ public class AlterCreatureActionTest {
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final AlterCreatureAction action = new AlterCreatureAction();
+		final SlashAction action = SlashActionRepository.get("altercreature");
 		assertThat(action.getMaximumParameters(), is(2));
 	}
 
@@ -65,7 +71,7 @@ public class AlterCreatureActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final AlterCreatureAction action = new AlterCreatureAction();
+		final SlashAction action = SlashActionRepository.get("altercreature");
 		assertThat(action.getMinimumParameters(), is(2));
 	}
 

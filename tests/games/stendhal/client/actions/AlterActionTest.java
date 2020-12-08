@@ -30,6 +30,7 @@ public class AlterActionTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		SlashActionRepository.register();
 	}
 
 	@After
@@ -52,7 +53,7 @@ public class AlterActionTest {
 				assertEquals("blabla", action.get("value"));
 			}
 		};
-		final AlterAction action = new AlterAction();
+		final SlashAction action = SlashActionRepository.get("alter");
 		assertFalse(action.execute(null, null));
 		assertFalse(action.execute(new String[] { "schnick" }, null));
 		assertFalse(action.execute(new String[] { "schnick", "schnick" }, null));
@@ -66,7 +67,7 @@ public class AlterActionTest {
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final AlterAction action = new AlterAction();
+		final SlashAction action = SlashActionRepository.get("alter");
 		assertThat(action.getMaximumParameters(), is(3));
 	}
 
@@ -75,7 +76,7 @@ public class AlterActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final AlterAction action = new AlterAction();
+		final SlashAction action = SlashActionRepository.get("alter");
 		assertThat(action.getMinimumParameters(), is(3));
 	}
 
