@@ -36,8 +36,9 @@ public class MuteActionTest {
 	}
 	
 	@Test
-	public void testUnmute() {
-		final MuteAction ma = new MuteAction();
+	public void testUnmute() { 
+		SlashActionRepository.register();
+		final SlashAction ma = SlashActionRepository.get("mute");
 		assertTrue(ma.execute(new String[] {null}, null));
 		assertEquals("Sounds are now on.",getInterface().getLastEventLine());
 		
@@ -46,7 +47,8 @@ public class MuteActionTest {
 	
 	@Test
 	public void testMmute() {
-		final MuteAction ma = new MuteAction();
+		SlashActionRepository.register();
+		final SlashAction ma = SlashActionRepository.get("mute");
 		assertTrue(ma.execute(new String[] {null}, null));
 		assertEquals("Sounds are now off.",getInterface().getLastEventLine());
 		
@@ -56,13 +58,15 @@ public class MuteActionTest {
 	
 	@Test
 	public void testGetMaximumParameters() {
-		final MuteAction action = new MuteAction();
+		SlashActionRepository.register();
+		final SlashAction action = SlashActionRepository.get("mute");
 		assertThat(action.getMaximumParameters(), is(0));
 	}
 
 	@Test
 	public void testGetMinimumParameters() {
-		final MuteAction action = new MuteAction(); 
+		SlashActionRepository.register();
+		final SlashAction action = SlashActionRepository.get("mute");
 		assertThat(action.getMinimumParameters(), is(0));
 	}
 }

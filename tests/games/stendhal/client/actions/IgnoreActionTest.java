@@ -31,7 +31,8 @@ public class IgnoreActionTest {
 			assertFalse(action.has("duration"));
 		}
 	};	
-		final IgnoreAction ignore = new IgnoreAction();
+		SlashActionRepository.register();
+		final SlashAction ignore = SlashActionRepository.get("ignore");
 		assertFalse(ignore.execute(new String[] {"schnick","schnuck"}, null));
 		assertFalse(ignore.execute(new String[] {"schnick","schnuck"}, "test"));
 		assertTrue(ignore.execute(new String[] {null}, null));
@@ -48,7 +49,8 @@ public class IgnoreActionTest {
 			assertEquals("test",action.get("reason"));
 		}
 	};	
-		final IgnoreAction ignore = new IgnoreAction();
+		SlashActionRepository.register();
+		final SlashAction ignore = SlashActionRepository.get("ignore");
 		assertTrue(ignore.execute(new String[] {"schnick","60"}, "test"));
 	}
 	
@@ -63,7 +65,8 @@ public class IgnoreActionTest {
 			assertEquals("test",action.get("reason"));
 		}
 	};	
-		final IgnoreAction ignore = new IgnoreAction();
+		SlashActionRepository.register();
+		final SlashAction ignore = SlashActionRepository.get("ignore");
 		assertFalse(ignore.execute(new String[] {"schnick","*"}, "test"));
 	}
 	
@@ -78,19 +81,22 @@ public class IgnoreActionTest {
 			assertEquals("test",action.get("reason"));
 		}
 	};	
-		final IgnoreAction ignore = new IgnoreAction();
+		SlashActionRepository.register();
+		final SlashAction ignore = SlashActionRepository.get("ignore");
 		assertFalse(ignore.execute(new String[] {"schnick","-"}, "test"));
 	}
 	
 	@Test
 	public void testGetMaximumParameters() {
-		final IgnoreAction action = new IgnoreAction();
+		SlashActionRepository.register();
+		final SlashAction action = SlashActionRepository.get("ignore");
 		assertThat(action.getMaximumParameters(), is(2));
 	}
 
 	@Test
 	public void testGetMinimumParameters() {
-		final IgnoreAction action = new IgnoreAction(); 
+		SlashActionRepository.register();
+		final SlashAction action = SlashActionRepository.get("ignore");
 		assertThat(action.getMinimumParameters(), is(0));
 	}
 

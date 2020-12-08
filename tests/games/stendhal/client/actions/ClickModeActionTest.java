@@ -39,14 +39,16 @@ public class ClickModeActionTest {
 	
 	@Test
 	public void testDoubleClickMode() {// test when current mode is double click but will be set to single click
-		final ClickModeAction cl = new ClickModeAction();
+		SlashActionRepository.register();
+		final SlashAction cl = SlashActionRepository.get("clickmode");
 		assertTrue(cl.execute(new String[] {null}, null));
 		assertEquals("Click mode is now set to single click.",getInterface().getLastEventLine());
 		
 	}
 	@Test 
 	public void testSingleClickMode() {//test when current mode is single click but will be set to double click
-		final ClickModeAction cl = new ClickModeAction();
+		SlashActionRepository.register();
+		final SlashAction cl = SlashActionRepository.get("clickmode");
 		assertTrue(cl.execute(new String[] {null}, null));
 		assertEquals("Click mode is now set to double click.",getInterface().getLastEventLine());
 	}
@@ -58,13 +60,15 @@ public class ClickModeActionTest {
 	
 	@Test
 	public void testGetMaximumParameters() {
-		final ClickModeAction action = new ClickModeAction();
+		SlashActionRepository.register();
+		final SlashAction action = SlashActionRepository.get("clickmode");
 		assertThat(action.getMaximumParameters(), is(0));
 	}
 
 	@Test
 	public void testGetMinimumParameters() {
-		final ClickModeAction action = new ClickModeAction(); 
+		SlashActionRepository.register();
+		final SlashAction action = SlashActionRepository.get("clickmode");
 		assertThat(action.getMinimumParameters(), is(0));
 	}
 

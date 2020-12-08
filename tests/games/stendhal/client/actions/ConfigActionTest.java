@@ -36,25 +36,28 @@ public class ConfigActionTest {
 	}
 
 	@Test
-	public void testExecuteWithoutIf() { //test if remainder not euqual to null or ""
+	public void testExecuteWithoutIf() { //test if remainder not equal to null or ""
 		new MockStendhalClient() {};
-		final ConfigAction ca = new ConfigAction();
+		SlashActionRepository.register();
+		final SlashAction ca = SlashActionRepository.get("config");
 		assertTrue(ca.execute(new String[] {"schnick"}, "test"));
 		assertEquals("Changed configuration property "+ "schnick "+"from \"" + "{undefined}" + "\" to \"" + "test" + "\".",getInterface().getLastEventLine());
 
 	}
 	@Test
-	public void testExecuteWithIf() { //test if remainder not euqual to null
+	public void testExecuteWithIf() { //test if remainder not equal to null
 		new MockStendhalClient() {};
-		final ConfigAction ca = new ConfigAction();
+		SlashActionRepository.register();
+		final SlashAction ca = SlashActionRepository.get("config");
 		assertTrue(ca.execute(new String[] {"schnick"}, null));
 		assertEquals("schnick"+"="+"{undefined}",getInterface().getLastEventLine());
 
 	}
 	@Test
-	public void testExecuteWithIfAgain() { //test if remainder not euqual to ""
+	public void testExecuteWithIfAgain() { //test if remainder not equal to ""
 		new MockStendhalClient() {};
-		final ConfigAction ca = new ConfigAction();
+		SlashActionRepository.register();
+		final SlashAction ca = SlashActionRepository.get("config");
 		assertTrue(ca.execute(new String[] {"schnick"}, ""));
 		assertEquals("schnick"+"="+"{undefined}",getInterface().getLastEventLine());
 
@@ -65,8 +68,9 @@ public class ConfigActionTest {
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final ConfigAction action = new ConfigAction();
-		assertEquals(1, action.getMaximumParameters());
+		SlashActionRepository.register();
+		final SlashAction ca = SlashActionRepository.get("config");
+		assertEquals(1, ca.getMaximumParameters());
 	}
 
 	/**
@@ -74,8 +78,9 @@ public class ConfigActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final ConfigAction action = new ConfigAction();
-		assertEquals(1, action.getMinimumParameters());
+		SlashActionRepository.register();
+		final SlashAction ca = SlashActionRepository.get("config");
+		assertEquals(1, ca.getMinimumParameters());
 	}
 
 	/**

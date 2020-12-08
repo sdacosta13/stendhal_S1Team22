@@ -31,19 +31,22 @@ public class CastSpellActionTest {
 				assertEquals("spells",action.get("baseslot"));
 			}
 		};
-		final CastSpellAction action = new CastSpellAction();
+		SlashActionRepository.register();
+		final SlashAction action = SlashActionRepository.get("cast");
 		assertTrue(action.execute(new String[] {"schnick","#"+"schnuck"}, null));
 		assertTrue(action.execute(new String[] {"schnick","#"+"schnuck"}, "spells"));
 	}
 	@Test
 	public void testGetMaximumParameters() {
-		final CastSpellAction action = new CastSpellAction();
+		SlashActionRepository.register();
+		final SlashAction action = SlashActionRepository.get("cast");
 		assertThat(action.getMaximumParameters(), is(2));
 	}
 
 	@Test
 	public void testGetMinimumParameters() {
-		final CastSpellAction action = new CastSpellAction(); 
+		SlashActionRepository.register();
+		final SlashAction action = SlashActionRepository.get("cast");
 		assertThat(action.getMinimumParameters(), is(2));
 	}
 }

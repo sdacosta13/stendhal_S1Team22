@@ -28,7 +28,8 @@ public class WhereActionTest {
 				assertEquals("test",action.get("target"));
 			}
 		};
-		final WhereAction wa = new WhereAction();
+		SlashActionRepository.register();
+		final SlashAction wa = SlashActionRepository.get("where");
 		assertTrue(wa.execute(new String[] {null}, "test"));
 	}
 	
@@ -41,20 +42,23 @@ public class WhereActionTest {
 				assertEquals(" ",action.get("target"));
 			}
 		};
-		final WhereAction wa = new WhereAction();
+		SlashActionRepository.register();
+		final SlashAction wa = SlashActionRepository.get("where");
 		assertTrue(wa.execute(new String[] {null}, " "));
 	}
 	
 	
 	@Test
 	public void testGetMaximumParameters() {
-		final WhereAction action = new WhereAction();
+		SlashActionRepository.register();
+		final SlashAction action = SlashActionRepository.get("where");
 		assertThat(action.getMaximumParameters(), is(0));
 	}
 
 	@Test
 	public void testGetMinimumParameters() {
-		final WhereAction action = new WhereAction(); 
+		SlashActionRepository.register();
+		final SlashAction action = SlashActionRepository.get("where"); 
 		assertThat(action.getMinimumParameters(), is(0));
 	}
 
