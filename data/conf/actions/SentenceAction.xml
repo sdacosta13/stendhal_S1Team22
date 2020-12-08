@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<action>
+<action xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ActionsSchema.xsd">
 	<paramNull></paramNull>
 	<keypair>
 		<key value="type"></key>
@@ -9,6 +9,6 @@
 		<key value="value"></key>
 		<value value="remainder"></value>
 	</keypair>
-	<maxParams value="0"></maxParams>
-	<minParams value="0"></minParams>
+	<maxParam value="0"></maxParam>
+	<minParam value="0"></minParam>
 </action>
