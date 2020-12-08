@@ -34,7 +34,7 @@ public class ActionHandler extends DefaultHandler {
 				
 			} 
 		} else if(qName.equals("paramNull")) {
-			paramNull = false;
+			paramNull = true;
 		} else if(qName.equals("errorOnRemainder")) {
 			errorOnRemainder = true;
 		} else if(inKeyPair && qName.equals("key")) {
