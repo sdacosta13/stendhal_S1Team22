@@ -34,7 +34,7 @@ public class AutoWalkActionTest {
 			@Override
 			public void send(final RPAction action) {
 				assertEquals("walk", action.get("type"));
-				assertEquals("schnick", action.get("TARGET"));
+				assertEquals("schnick", action.get("target"));
 			}
 		};
 		final SlashAction action = SlashActionRepository.get("walk");
