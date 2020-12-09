@@ -52,7 +52,7 @@ public class GeneralAction implements SlashAction{
 				int index = Integer.parseInt(entry.getValue().substring(6,entry.getValue().length()));
 				generalRPAction.put(entry.getKey(), params[index]);
 			} else if(entry.getValue().equals("remainder")){
-				if(this.checkForConstant(entry.getValue())) {
+				if(this.checkForConstant(entry.getKey())) {
 					String s = this.convertToEnum(entry.getKey());
 					generalRPAction.put(s, remainder);
 				} else {
@@ -77,8 +77,8 @@ public class GeneralAction implements SlashAction{
 					int index = Integer.parseInt(entry.getValue().substring(6,entry.getValue().length()));
 					generalRPAction.put(entry.getKey(), params[index]);
 				} else if(entry.getValue().equals("remainder")){
-					if(this.checkForConstant(entry.getValue())) {
-						String s = this.convertToEnum(entry.getValue());
+					if(this.checkForConstant(entry.getKey())) {
+						String s = this.convertToEnum(entry.getKey());
 						generalRPAction.put(s, remainder);
 					} else {
 						generalRPAction.put(entry.getKey(), remainder);
