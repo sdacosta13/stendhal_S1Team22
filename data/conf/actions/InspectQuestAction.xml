@@ -6,7 +6,7 @@
 	</keypair>
 	<keypair>
 		<key value="target"></key>
-		<value value="param" index="0"></value>
+		<value value="params" index="0"></value>
 	</keypair>
 	<keypair>
 		<key value="quest_slot"></key>
