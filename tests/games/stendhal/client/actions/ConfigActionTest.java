@@ -45,7 +45,7 @@ public class ConfigActionTest {
 
 	}
 	@Test
-	public void testExecuteWithIf() { //test if remainder not equal to null
+	public void testExecuteWithIf() { //test if remainder equal to null
 		new MockStendhalClient() {};
 		SlashActionRepository.register();
 		final SlashAction ca = SlashActionRepository.get("config");
@@ -54,7 +54,7 @@ public class ConfigActionTest {
 
 	}
 	@Test
-	public void testExecuteWithIfAgain() { //test if remainder not equal to ""
+	public void testExecuteWithIfAgain() { //test if remainder equal to ""
 		new MockStendhalClient() {};
 		SlashActionRepository.register();
 		final SlashAction ca = SlashActionRepository.get("config");
