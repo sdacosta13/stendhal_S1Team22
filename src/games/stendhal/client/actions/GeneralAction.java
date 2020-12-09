@@ -45,6 +45,7 @@ public class GeneralAction implements SlashAction{
 				return false;
 			}
 		}
+		if(params.length < this.getMinimumParameters()) return false;
 		LinkedHashMap<String, String> keypairs = toUse.RPActionParams;
 		for(Map.Entry<String, String> entry : keypairs.entrySet()) {
 			if(entry.getValue().contains("param")) {
