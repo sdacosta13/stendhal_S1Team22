@@ -18,13 +18,22 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import games.stendhal.client.MockStendhalClient;
 import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
 
+
+
+
 public class WhoActionTest {
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		SlashActionRepository.register();
+	}
 
 	@After
 	public void tearDown() throws Exception {
@@ -45,7 +54,7 @@ public class WhoActionTest {
 				}
 			}
 		};
-		final WhoAction action = new WhoAction();
+		final SlashAction action = SlashActionRepository.get("who");
 		assertTrue(action.execute(null, null));
 	}
 
@@ -54,7 +63,7 @@ public class WhoActionTest {
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final WhoAction action = new WhoAction();
+		final SlashAction action = SlashActionRepository.get("who");
 		assertThat(action.getMaximumParameters(), is(0));
 	}
 
@@ -63,7 +72,7 @@ public class WhoActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final WhoAction action = new WhoAction();
+		final SlashAction action = SlashActionRepository.get("who");
 		assertThat(action.getMinimumParameters(), is(0));
 	}
 
