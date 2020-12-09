@@ -1,0 +1,49 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<!-- definition of simple elements -->
+	<xs:element name="paramNull" />
+	<xs:element name="errorOnRemainder" />
+	<xs:element name="maxParam" />
+	<xs:element name="minParam" />
+	<!-- definition of attributes -->
+	<xs:attribute name="value" type="xs:string" />
+	<xs:attribute name="index" type="xs:string" />
+	<xs:attribute name="optional" type="xs:string" />
+
+	<!-- definition of complex elements -->
+	<xs:element name="key">
+		<xs:complexType>
+			<xs:attribute ref="value" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="value">
+		<xs:complexType>
+			<xs:attribute ref="value" />
+			<xs:attribute ref="index" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="keypair">
+
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="key" minOccurs="1" maxOccurs="1" />
+				<xs:element ref="value" minOccurs="1" maxOccurs="1" />
+			</xs:sequence>
+			<xs:attribute ref="optional" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="action">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="paramNull" minOccurs="0" maxOccurs="1" />
+				<xs:element ref="errorOnRemainder" minOccurs="0"
+					maxOccurs="1" />
+				<xs:element ref="keypair" maxOccurs="unbounded" />
+				<xs:element ref="maxParam" minOccurs="1" maxOccurs="1" />
+				<xs:element ref="minParam" minOccurs="1" maxOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>
