@@ -10,7 +10,7 @@
 	</keypair>
 	<keypair>
 		<key value="quest_slot"></key>
-		<value value="param" index="1"></value>
+		<value value="params" index="1"></value>
 	</keypair>
 	<maxParam value="2"></maxParam>
 	<minParam value="2"></minParam>

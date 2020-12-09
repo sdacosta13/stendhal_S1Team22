@@ -49,13 +49,10 @@ public class GeneralAction implements SlashAction{
 		for(Map.Entry<String, String> entry : keypairs.entrySet()) {
 			if(entry.getValue().contains("param")) {
 				int index = Integer.parseInt(entry.getValue().substring(6,entry.getValue().length()));
-				if(index <= this.getMinimumParameters() - 1) {
-					return false;
-				}
 				generalRPAction.put(entry.getKey(), params[index]);
 			} else if(entry.getValue().equals("remainder")){
 				if(this.checkForConstant(entry.getValue())) {
-					String s = this.convertToEnum(entry.getValue());
+					String s = this.convertToEnum(entry.getKey());
 					generalRPAction.put(s, remainder);
 				} else {
 					generalRPAction.put(entry.getKey(), remainder);
