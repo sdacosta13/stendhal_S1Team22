@@ -20,7 +20,7 @@ public class WhereActionTest {
 	
 	
 	@Test
-	public void testRemianderNotLengthZero() {
+	public void testRemainderNotLengthZero() {
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
@@ -34,7 +34,7 @@ public class WhereActionTest {
 	}
 	
 	@Test
-	public void testRemianderLengthZero() {
+	public void testRemainderLengthZero() {
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
