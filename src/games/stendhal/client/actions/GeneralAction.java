@@ -41,11 +41,11 @@ public class GeneralAction implements SlashAction{
 			}
 		}
 		if(toUse.errorOnRemainder) {
-			if(remainder.isEmpty()) {
+			if(remainder == null || remainder.isEmpty()) {
 				return false;
 			}
 		}
-		if(params.length < this.getMinimumParameters()) return false;
+		if(params != null && params.length < this.getMinimumParameters()) return false;
 		LinkedHashMap<String, String> keypairs = toUse.RPActionParams;
 		for(Map.Entry<String, String> entry : keypairs.entrySet()) {
 			if(entry.getValue().contains("param")) {
@@ -133,7 +133,7 @@ public class GeneralAction implements SlashAction{
 			case "TARGET":
 				return Actions.TARGET;
 			case "MODE":
-				return Actions.GHOSTMODE;
+				return Actions.MODE;
 			case "INSPECTQUEST":
 				return Actions.INSPECTQUEST;
 			case "REMOVEDETAIL":
