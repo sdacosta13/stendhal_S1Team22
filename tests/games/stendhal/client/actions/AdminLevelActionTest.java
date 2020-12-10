@@ -30,6 +30,7 @@ public class AdminLevelActionTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		SlashActionRepository.register();
 	}
 
 	@After
@@ -49,7 +50,7 @@ public class AdminLevelActionTest {
 				assertEquals("schnick", action.get("target"));
 			}
 		};
-		final AdminLevelAction action = new AdminLevelAction();
+		final SlashAction action = SlashActionRepository.get("adminlevel");
 		assertFalse(action.execute(null, null));
 		assertTrue(action.execute(new String[] { "schnick" }, null));
 	}
@@ -87,7 +88,7 @@ public class AdminLevelActionTest {
 				assertEquals("100", action.get("newlevel"));
 			}
 		};
-		final AdminLevelAction action = new AdminLevelAction();
+		final SlashAction action = SlashActionRepository.get("adminlevel");
 		assertFalse(action.execute(null, null));
 		assertTrue(action.execute(new String[] { "schnick", "100" }, null));
 	}
@@ -97,7 +98,7 @@ public class AdminLevelActionTest {
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final AdminLevelAction action = new AdminLevelAction();
+		final SlashAction action = SlashActionRepository.get("adminlevel");
 		assertThat(action.getMaximumParameters(), is(2));
 	}
 
@@ -106,7 +107,7 @@ public class AdminLevelActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final AdminLevelAction action = new AdminLevelAction();
+		final SlashAction action = SlashActionRepository.get("adminlevel");
 		assertThat(action.getMinimumParameters(), is(1));
 	}
 
