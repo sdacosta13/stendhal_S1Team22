@@ -71,32 +71,35 @@ public class GeneralAction implements SlashAction{
 			}
 		}
 		LinkedHashMap<String, String> optionalParams = toUse.optionalParams;
-		if(params.length + 1 > keypairs.size()) {
-			for(Map.Entry<String, String> entry : optionalParams.entrySet()) {
-				if(entry.getValue().contains("params")) {
-					int index = Integer.parseInt(entry.getValue().substring(6,entry.getValue().length()));
-					generalRPAction.put(entry.getKey(), params[index]);
-				} else if(entry.getValue().equals("remainder")){
-					if(this.checkForConstant(entry.getKey())) {
-						String s = this.convertToEnum(entry.getKey());
-						generalRPAction.put(s, remainder);
+		if(params != null) {
+			if(params.length + 1 > keypairs.size()) {
+				for(Map.Entry<String, String> entry : optionalParams.entrySet()) {
+					if(entry.getValue().contains("params")) {
+						int index = Integer.parseInt(entry.getValue().substring(6,entry.getValue().length()));
+						generalRPAction.put(entry.getKey(), params[index]);
+					} else if(entry.getValue().equals("remainder")){
+						if(this.checkForConstant(entry.getKey())) {
+							String s = this.convertToEnum(entry.getKey());
+							generalRPAction.put(s, remainder);
+						} else {
+							generalRPAction.put(entry.getKey(), remainder);
+						}
 					} else {
-						generalRPAction.put(entry.getKey(), remainder);
-					}
-				} else {
-					String a = entry.getKey();
-					String b = entry.getValue();
-					if(this.checkForConstant(a)) {
-						a = this.convertToEnum(entry.getKey());
-					}
-					if(this.checkForConstant(b)) {
-						b = this.convertToEnum(entry.getValue());
-					}
-					generalRPAction.put(a.toLowerCase(), b.toLowerCase());
+						String a = entry.getKey();
+						String b = entry.getValue();
+						if(this.checkForConstant(a)) {
+							a = this.convertToEnum(entry.getKey());
+						}
+						if(this.checkForConstant(b)) {
+							b = this.convertToEnum(entry.getValue());
+						}
+						generalRPAction.put(a.toLowerCase(), b.toLowerCase());
 
+					}
 				}
 			}
 		}
+		
 		
 		ClientSingletonRepository.getClientFramework().send(generalRPAction);
 		return true;
