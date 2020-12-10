@@ -14,6 +14,7 @@ package games.stendhal.client.actions;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -25,7 +26,7 @@ import games.stendhal.client.MockStendhalClient;
 import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
 
-public class AwayActionTest {
+public class GagActionTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		SlashActionRepository.register();
@@ -44,13 +45,16 @@ public class AwayActionTest {
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
-				assertEquals("away", action.get("type"));
-				assertEquals("schnick", action.get("message"));
+				assertEquals("gag", action.get("type"));
+				assertEquals("schnick", action.get("target"));
+				assertEquals("schnack", action.get("minutes"));
+				assertEquals("sth", action.get("reason"));
 			}
 		};
 
-		final SlashAction action = SlashActionRepository.get("away");
-		assertTrue(action.execute(null, "schnick"));
+		final SlashAction action = SlashActionRepository.get("gag");
+		assertTrue(action.execute(new String[] { "schnick", "schnack"},"sth"));
+		assertFalse(action.execute(new String[] {"schnick", "schnack"}, ""));
 	}
 
 	/**
@@ -58,8 +62,8 @@ public class AwayActionTest {
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final SlashAction action = SlashActionRepository.get("away");
-		assertThat(action.getMaximumParameters(), is(0));
+		final SlashAction action = SlashActionRepository.get("gag");
+		assertThat(action.getMaximumParameters(), is(2));
 	}
 
 	/**
@@ -67,7 +71,7 @@ public class AwayActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final SlashAction action = SlashActionRepository.get("away");
-		assertThat(action.getMinimumParameters(), is(0));
+		final SlashAction action = SlashActionRepository.get("gag");
+		assertThat(action.getMinimumParameters(), is(2));
 	}
 }
