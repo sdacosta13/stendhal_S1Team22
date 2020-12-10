@@ -51,7 +51,7 @@ public class AnswerActionTest {
 			}
 		};
 		final SlashAction action = SlashActionRepository.get("answer");
-//		assertTrue(action.execute(null, "schnick"));
+		assertTrue(action.execute(null, "schnick"));
 		assertTrue(action.execute(new String []{"schnick"}, "schnick"));
 	}
 

@@ -53,9 +53,8 @@ public class AlterQuestActionTest {
 
 			}
 		};
-//		final AlterQuestAction action = new AlterQuestAction();
 		final SlashAction action = SlashActionRepository.get("alterquest");
-//		assertFalse(action.execute(null, null));
+		assertFalse(action.execute(null, null));
 		assertFalse(action.execute(new String[] { "schnick" }, null));
 		assertTrue(action.execute(new String[] { "schnick", "schnack", "schnuck" }, null));
 
