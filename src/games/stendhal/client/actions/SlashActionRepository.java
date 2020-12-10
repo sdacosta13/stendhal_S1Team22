@@ -42,7 +42,7 @@ public class SlashActionRepository {
 
 		actions.put("/", new RemessageAction());
 		actions.put("add", new GeneralAction("AddBuddyAction.xml"));
-		actions.put("adminlevel", new GeneralAction("AdminLevelAction.xml"));
+		actions.put("adminlevel", new AdminLevelAction());
 		actions.put("adminnote", new GeneralAction("AdminNoteAction.xml"));
 		actions.put("alter", new GeneralAction("AlterAction.xml"));
 		actions.put("altercreature", new GeneralAction("AlterCreatureAction.xml"));
@@ -66,7 +66,8 @@ public class SlashActionRepository {
 
 		actions.put("gag", new GeneralAction("GagAction.xml"));
 		actions.put("gmhelp", new GMHelpAction());
-		actions.put("group", new GeneralAction("GroupMessageAction.xml")); 
+//		actions.put("group", new GeneralAction("GroupManagementAction.xml")); 
+		actions.put("group", new GroupManagementAction(groupMessage)); 
 		actions.put("groupmessage", groupMessage);
 		actions.put("grumpy", new GrumpyAction());
 
