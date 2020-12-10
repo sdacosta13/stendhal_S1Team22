@@ -52,6 +52,17 @@ public class GrumpyActionTest {
 		final SlashAction action = SlashActionRepository.get("grumpy");
 		assertTrue(action.execute(null,"schnick"));
 	}
+	public void testExecute2() {
+		new MockStendhalClient() {
+			@Override
+			public void send(final RPAction action) {
+				assertEquals("grumpy", action.get("type"));
+			}
+		};
+
+		final SlashAction action = SlashActionRepository.get("grumpy");
+		assertTrue(action.execute(null, ""));
+}
 
 	/**
 	 * Tests for getMaximumParameters.
