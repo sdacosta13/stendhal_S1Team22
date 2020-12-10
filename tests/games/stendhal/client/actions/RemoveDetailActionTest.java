@@ -3,8 +3,7 @@ package games.stendhal.client.actions;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
-
-
+import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.BeforeClass;
@@ -37,7 +36,11 @@ public class RemoveDetailActionTest {
 				
 				
 			}
-		};
+		}; 
+		final SlashAction action = SlashActionRepository.get("removedetail");
+		assertTrue(action.execute(new String [] {"removedetail"},"removedetail")); 
+		
+		
 		
 		
 		

@@ -40,7 +40,7 @@ public class SupportActionTest {
 			}
 		};
 		final SlashAction action = SlashActionRepository.get("support");
-		assertTrue(action.execute(new String [] {"support"},"something")); //HERE
+		assertTrue(action.execute(null,"something")); //HERE
 		
 		
 	}

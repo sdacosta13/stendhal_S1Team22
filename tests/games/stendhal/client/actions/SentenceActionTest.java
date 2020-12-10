@@ -4,6 +4,8 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
+
 
 
 import org.junit.After;
@@ -40,6 +42,7 @@ public class SentenceActionTest {
 			}
 		};
 		final SlashAction action = SlashActionRepository.get("status");
+		assertFalse(action.execute(null, ""));
 		assertTrue(action.execute(new String [] {"sentence"},"something")); 
 		
 		
@@ -51,6 +54,7 @@ public class SentenceActionTest {
 	@Test
 	public void testGetMaximumParameters() {
 		final SlashAction action = SlashActionRepository.get("status");
+		
 		assertThat(action.getMaximumParameters(), is(0));
 	}
 

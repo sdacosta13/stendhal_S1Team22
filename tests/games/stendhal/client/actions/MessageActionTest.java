@@ -4,6 +4,8 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
+
 
 
 import org.junit.After;
@@ -33,7 +35,7 @@ public class MessageActionTest {
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction remove) {
-				assertEquals("tell", remove.get("type"));  // action.put("type", REMOVEDETAIL);
+				assertEquals("tell", remove.get("type")); 
 				assertEquals("lastPlayerTell", remove.get("target"));
 				assertEquals("something", remove.get("text"));
 				
@@ -44,6 +46,8 @@ public class MessageActionTest {
 		};
 		final SlashAction action = SlashActionRepository.get("msg");
 		assertTrue(action.execute(new String [] {"lastPlayerTell"}, "something"));
+		assertFalse(action.execute(new String [] {"lastPlayerTell"}, ""));
+
 		
 		
 	}
@@ -55,6 +59,7 @@ public class MessageActionTest {
 	public void testGetMaximumParameters() {
 		final SlashAction action = SlashActionRepository.get("remove");
 		assertThat(action.getMaximumParameters(), is(1));
+		
 	}
 
 	/**
